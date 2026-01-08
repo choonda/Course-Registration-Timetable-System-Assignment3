@@ -324,7 +324,7 @@ void SystemManager::adminMenu() {
         std::cout << "\n===== ADMIN MENU =====\n";
         std::cout << "1. View Courses\n";
         std::cout << "2. Searching Courses\n";
-        std::cout << "3. Courses Management\n";
+        std::cout << "3. Courses and Timetable Management\n";
         std::cout << "4. Student Courses Registration Approvement\n";
         std::cout << "0. Back\n";
         std::cout << "Enter choice: ";
@@ -398,7 +398,7 @@ void SystemManager::adminMenu() {
             case 3: {
                 int subChoice;
                 do {
-                    std::cout << "\n===== COURSES MANAGEMENT =====\n";
+                    std::cout << "\n===== COURSES AND TIMETABLE MANAGEMENT =====\n";
                     std::cout << "1. Manage Timetable\n";
                     std::cout << "2. Add Course\n";
                     std::cout << "3. Delete Course\n";
