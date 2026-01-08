@@ -44,6 +44,7 @@ public:
     void adminMenu();   //Tan Choon Da
     void studentMenu(Student &s);   //Tan Choon Da
     
+    void loadStudentRegistrations(Student &s); // Load approved courses from file
     void studentViewAllCourses() const; //Tan Choon Da      
     
     void studentSearchCourseByCode() const; //Lee Ming Da

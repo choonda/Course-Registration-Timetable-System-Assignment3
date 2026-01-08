@@ -5,7 +5,7 @@
 
 int main() {
     SystemManager system;
-    Student student;
+    // Student student; // Moved inside loop for session isolation
 
     // load data
     system.loadCoursesFromFile("courses.txt");
@@ -28,6 +28,7 @@ int main() {
                 }
                 break;
             case 2: {
+                Student student; // unique session per login
                 // Ask student for ID and name at login
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 std::string sid, sname;
