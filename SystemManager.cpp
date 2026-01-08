@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <cctype>
 #include <iomanip>
+#include <limits>
 
 SystemManager::SystemManager()
     : head(nullptr), totalCourses(0), adminPassword("admin123") {}
