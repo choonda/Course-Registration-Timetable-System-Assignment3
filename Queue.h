@@ -16,13 +16,13 @@ struct NodeQ {
 
 class RegistrationQueue {
 private:
-    NodeQ *frontPtr, *backPtr; // cite: 98
+    NodeQ *frontPtr, *backPtr; 
 
 public:
-    RegistrationQueue() : frontPtr(nullptr), backPtr(nullptr) {} // cite: 107
+    RegistrationQueue() : frontPtr(nullptr), backPtr(nullptr) {} 
     ~RegistrationQueue() { clearQueue(); }
 
-    bool isEmpty() const { return frontPtr == nullptr; } // cite: 114
+    bool isEmpty() const { return frontPtr == nullptr; } 
     
     // Function 1: Enqueue (Apply)
     void enqueue(std::string sid, std::string code); 

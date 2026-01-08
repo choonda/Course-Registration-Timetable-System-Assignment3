@@ -1,17 +1,18 @@
 #include "Queue.h"
+#include <iostream>
 
 // 1. Apply for Course (Insert to Back)
 void RegistrationQueue::enqueue(std::string sid, std::string code) {
-    NodeQ* newNode = new NodeQ; // cite: 134
+    NodeQ* newNode = new NodeQ; 
     newNode->data.studentID = sid;
     newNode->data.courseCode = code;
-    newNode->next = nullptr; // cite: 135
+    newNode->next = nullptr; 
 
     if (isEmpty()) {
-        frontPtr = backPtr = newNode; // cite: 136
+        frontPtr = backPtr = newNode; 
     } else {
-        backPtr->next = newNode; // cite: 138
-        backPtr = newNode; // cite: 139
+        backPtr->next = newNode; 
+        backPtr = newNode; 
     }
 }
 
@@ -19,13 +20,13 @@ void RegistrationQueue::enqueue(std::string sid, std::string code) {
 Request RegistrationQueue::dequeue() {
     if (isEmpty()) return {"", ""};
 
-    NodeQ* temp = frontPtr; // cite: 164
+    NodeQ* temp = frontPtr;
     Request data = temp->data;
-    frontPtr = frontPtr->next; // cite: 165
+    frontPtr = frontPtr->next; 
 
-    if (frontPtr == nullptr) backPtr = nullptr; // cite: 192
+    if (frontPtr == nullptr) backPtr = nullptr; 
 
-    delete temp; // cite: 167
+    delete temp;
     return data;
 }
 
@@ -46,10 +47,10 @@ void RegistrationQueue::displayQueue() const {
 
 // 4. Clear All Requests (Destroy Queue)
 void RegistrationQueue::clearQueue() {
-    NodeQ* temp = frontPtr; // cite: 110
-    while (temp) { // cite: 111
-        frontPtr = temp->next; // cite: 112
-        delete temp; // cite: 113
+    NodeQ* temp = frontPtr; 
+    while (temp) { 
+        frontPtr = temp->next; 
+        delete temp; 
         temp = frontPtr;
     }
     backPtr = nullptr;
