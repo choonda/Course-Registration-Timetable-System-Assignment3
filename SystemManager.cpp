@@ -322,16 +322,10 @@ void SystemManager::adminMenu() {
     int choice;
     do {
         std::cout << "\n===== ADMIN MENU =====\n";
-        std::cout << "1. View courses sorted by course code\n";
-        std::cout << "2. View courses sorted by lecturer name\n";
-        std::cout << "3. View courses sorted by credit hour\n";
-        std::cout << "4. Search Course\n";
-        std::cout << "5. Manage Timetable\n";
-        std::cout << "6. Add Course\n";
-        std::cout << "7. Delete Course\n";
-        std::cout << "8. View Pending Queue\n";
-        std::cout << "9. Process Next Request\n";
-        std::cout << "10. Clear All Requests\n";
+        std::cout << "1. View Courses\n";
+        std::cout << "2. Searching Courses\n";
+        std::cout << "3. Courses Management\n";
+        std::cout << "4. Student Courses Registration Approvement\n";
         std::cout << "0. Back\n";
         std::cout << "Enter choice: ";
         std::cin >> choice;
@@ -345,39 +339,120 @@ void SystemManager::adminMenu() {
         }
 
         switch (choice) {
-            case 1: displayAllCoursesSortedByCourseCode(); break;
-            case 2: displayAllCoursesSortedByLecturerName(); break;
-            case 3: displayAllCoursesSortedByCreditHour(); break;
-            case 4: {
-                {
-                    std::cout << "Search by: 1) Code  2) Course name\n";
-                    int sub;
-                    std::cout << "Choice: "; std::cin >> sub;
-                    if (sub == 1) {
-                        std::string code;
-                        std::cout << "Enter course code: ";
-                        std::cin >> code;
-                        int idx = searchCourseByCode(code);
-                        if (idx != -1) getCourseAt(idx).display();
-                        else std::cout << "Course not found!\n";
-                    } else if (sub == 2) {
-                        std::string name;
+            case 1: {
+                int subChoice;
+                do {
+                    std::cout << "\n===== VIEW COURSES =====\n";
+                    std::cout << "1. View courses sorted by course code\n";
+                    std::cout << "2. View courses sorted by lecturer name\n";
+                    std::cout << "3. View courses sorted by credit hour\n";
+                    std::cout << "0. Back\n";
+                    std::cout << "Enter choice: ";
+                    std::cin >> subChoice;
+
+                    if (std::cin.fail()) {
+                        std::cin.clear();
                         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                        std::cout << "Enter course name (or part of it): ";
-                        std::getline(std::cin, name);
-                        int idx = searchCourseByCourseName(name);
-                        if (idx != -1) getCourseAt(idx).display();
-                        else std::cout << "Course not found!\n";
-                    } else std::cout << "Invalid choice." << std::endl;
-                }
+                        std::cout << "Invalid input! Please enter a number.\n";
+                        subChoice = -1;
+                        continue;
+                    }
+
+                    switch (subChoice) {
+                        case 1: displayAllCoursesSortedByCourseCode(); break;
+                        case 2: displayAllCoursesSortedByLecturerName(); break;
+                        case 3: displayAllCoursesSortedByCreditHour(); break;
+                        case 0: break;
+                        default: std::cout << "Invalid choice!\n"; break;
+                    }
+                } while (subChoice != 0);
                 break;
             }
-            case 5: manageTimetable(); break;
-            case 6: addCourse(); break;
-            case 7: deleteCourse(); break;
-            case 8: adminViewPendingRequests(); break;
-            case 9: adminProcessNextRequest(); break;
-            case 10: adminClearAllRequests(); break;
+            case 2: {
+                int subChoice;
+                do {
+                    std::cout << "\n===== SEARCHING COURSE =====\n";
+                    std::cout << "1. Search by Code\n";
+                    std::cout << "2. Search by Course Name\n";
+                    std::cout << "0. Back\n";
+                    std::cout << "Choice: ";
+                    std::cin >> subChoice;
+
+                    if (std::cin.fail()) {
+                        std::cin.clear();
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        std::cout << "Invalid input! Please enter a number.\n";
+                        subChoice = -1;
+                        continue;
+                    }
+                    
+                    switch(subChoice) {
+                        case 1: studentSearchCourseByCode(); break;
+                        case 2: studentSearchCourseByCourseName(); break;
+                        case 0: break;
+                        default: std::cout << "Invalid choice!\n"; break;
+                    }
+                } while(subChoice != 0);
+                break;
+            }
+            case 3: {
+                int subChoice;
+                do {
+                    std::cout << "\n===== COURSES MANAGEMENT =====\n";
+                    std::cout << "1. Manage Timetable\n";
+                    std::cout << "2. Add Course\n";
+                    std::cout << "3. Delete Course\n";
+                    std::cout << "0. Back\n";
+                    std::cout << "Enter choice: ";
+                    std::cin >> subChoice;
+
+                    if (std::cin.fail()) {
+                        std::cin.clear();
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        std::cout << "Invalid input! Please enter a number.\n";
+                        subChoice = -1;
+                        continue;
+                    }
+
+                    switch (subChoice) {
+                        case 1: manageTimetable(); break;
+                        case 2: addCourse(); break;
+                        case 3: deleteCourse(); break;
+                        case 0: break;
+                        default: std::cout << "Invalid choice!\n"; break;
+                    }
+                } while (subChoice != 0);
+                break;
+            }
+            case 4: {
+                int subChoice;
+                do {
+                    std::cout << "\n===== STUDENT COURSES REGISTRATION APPROVEMENT =====\n";
+                    std::cout << "1. View Pending Queue\n";
+                    std::cout << "2. Process Next Request\n";
+                    std::cout << "3. Clear All Requests\n";
+                    std::cout << "0. Back\n";
+                    std::cout << "Enter choice: ";
+                    std::cin >> subChoice;
+
+                    if (std::cin.fail()) {
+                        std::cin.clear();
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        std::cout << "Invalid input! Please enter a number.\n";
+                        subChoice = -1;
+                        continue;
+                    }
+
+                    switch (subChoice) {
+                        case 1: adminViewPendingRequests(); break;
+                        case 2: adminProcessNextRequest(); break;
+                        case 3: adminClearAllRequests(); break;
+                        case 0: break;
+                        default: std::cout << "Invalid choice!\n"; break;
+                    }
+                } while (subChoice != 0);
+                break;
+            }
             case 0: break;
             default: std::cout << "Invalid choice!\n"; break;
         }
@@ -390,13 +465,10 @@ void SystemManager::studentMenu(Student &s) {
     int choice;
     do {
         std::cout << "\n===== STUDENT MENU =====\n";
-        std::cout << "1. Apply for Course (Add to Queue)\n";
-        std::cout << "2. Drop Course\n";
-        std::cout << "3. View Timetable sorted by course code\n";
-        std::cout << "4. View Timetable sorted by Lecturer name\n";
-        std::cout << "5. View Timetable sorted by credit hour\n";
-        std::cout << "6. View All Courses\n";
-        std::cout << "7. Search Course\n";
+        std::cout << "1. Course Registration\n";
+        std::cout << "2. View Timetable\n";
+        std::cout << "3. View Courses\n";
+        std::cout << "4. Searching Course\n";
         std::cout << "0. Back to Main Menu\n";
         std::cout << "Enter choice: ";
         std::cin >> choice;
@@ -411,58 +483,137 @@ void SystemManager::studentMenu(Student &s) {
 
         switch (choice) {
             case 1: {
-                std::string code;
-                std::cout << "Course Code: ";
-                std::cin >> code;
-                if (searchCourseByCode(code) == -1) {
-                    std::cout << "Course does not exist!\n";
-                } else {
-                    pendingQueue.enqueue(s.getStudentID(), code);
-                    std::cout << "Application submitted to queue.\n";
-                }
+                int subChoice;
+                do {
+                    std::cout << "\n===== COURSE REGISTRATION =====\n";
+                    std::cout << "1. Apply for Course (Add to Queue)\n";
+                    std::cout << "2. Drop Course\n";
+                    std::cout << "0. Back\n";
+                    std::cout << "Enter choice: ";
+                    std::cin >> subChoice;
+
+                    if (std::cin.fail()) {
+                        std::cin.clear();
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        std::cout << "Invalid input! Please enter a number.\n";
+                        subChoice = -1;
+                        continue;
+                    }
+
+                    switch (subChoice) {
+                        case 1: {
+                            std::string code;
+                            std::cout << "Course Code: ";
+                            std::cin >> code;
+                            if (searchCourseByCode(code) == -1) {
+                                std::cout << "Course does not exist!\n";
+                            } else {
+                                pendingQueue.enqueue(s.getStudentID(), code);
+                                std::cout << "Application submitted to queue.\n";
+                            }
+                            break;
+                        }
+                        case 2: {
+                            std::string code;
+                            std::cout << "Course Code: ";
+                            std::cin >> code;
+                            s.dropCourse(code);
+                            break;
+                        }
+                        case 0: break;
+                        default: std::cout << "Invalid choice!\n"; break;
+                    }
+                } while (subChoice != 0);
                 break;
             }
             case 2: {
-                std::string code;
-                std::cout << "Course Code: ";
-                std::cin >> code;
-                s.dropCourse(code);
+                int subChoice;
+                do {
+                    std::cout << "\n===== VIEW TIMETABLE =====\n";
+                    std::cout << "1. View Timetable sorted by course code\n";
+                    std::cout << "2. View Timetable sorted by Lecturer name\n";
+                    std::cout << "3. View Timetable sorted by credit hour\n";
+                    std::cout << "0. Back\n";
+                    std::cout << "Enter choice: ";
+                    std::cin >> subChoice;
+
+                    if (std::cin.fail()) {
+                        std::cin.clear();
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        std::cout << "Invalid input! Please enter a number.\n";
+                        subChoice = -1;
+                        continue;
+                    }
+
+                    switch (subChoice) {
+                        case 1: displayTimetableSortedByCourseCode(s); break;
+                        case 2: displayTimetableSortedByLecturerName(s); break;
+                        case 3: displayTimetableSortedByCreditHour(s); break;
+                        case 0: break;
+                        default: std::cout << "Invalid choice!\n"; break;
+                    }
+                } while (subChoice != 0);
                 break;
             }
-            case 3:
-                displayTimetableSortedByCourseCode(s);
-                break;
-            case 4:
-                displayTimetableSortedByLecturerName(s);
-                break;
-            case 5:
-                displayTimetableSortedByCreditHour(s);
-                break;
-            case 6:
-                studentViewAllCourses();
-                break;
-            case 7: {
-                std::cout << "Search by: 1) Code  2) Course name\n";
-                int sub;
-                std::cout << "Choice: "; 
-                std::cin >> sub;
-                if (sub == 1) studentSearchCourseByCode();
-                else if (sub == 2) studentSearchCourseByCourseName();
-                else std::cout << "Invalid choice." << std::endl;
+            case 3: {
+                int subChoice;
+                do {
+                    std::cout << "\n===== VIEW COURSES =====\n";
+                    std::cout << "1. View All Courses\n";
+                    std::cout << "0. Back\n";
+                    std::cout << "Enter choice: ";
+                    std::cin >> subChoice;
+
+                    if (std::cin.fail()) {
+                        std::cin.clear();
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        std::cout << "Invalid input! Please enter a number.\n";
+                        subChoice = -1;
+                        continue;
+                    }
+
+                    switch (subChoice) {
+                        case 1: studentViewAllCourses(); break;
+                        case 0: break;
+                        default: std::cout << "Invalid choice!\n"; break;
+                    }
+                } while (subChoice != 0);
                 break;
             }
-            case 0:
+            case 4: {
+                int subChoice;
+                do {
+                    std::cout << "\n===== SEARCHING COURSE =====\n";
+                    std::cout << "1. Search by Code\n";
+                    std::cout << "2. Search by Course Name\n";
+                    std::cout << "0. Back\n";
+                    std::cout << "Choice: ";
+                    std::cin >> subChoice;
+
+                    if (std::cin.fail()) {
+                        std::cin.clear();
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        std::cout << "Invalid input! Please enter a number.\n";
+                        subChoice = -1;
+                        continue;
+                    }
+                    
+                    switch(subChoice) {
+                        case 1: studentSearchCourseByCode(); break;
+                        case 2: studentSearchCourseByCourseName(); break;
+                        case 0: break;
+                        default: std::cout << "Invalid choice!\n"; break;
+                    }
+                } while(subChoice != 0);
                 break;
-            default:
-                std::cout << "Invalid choice!\n";
-                break;
+            }
+            case 0: break;
+            default: std::cout << "Invalid choice!\n"; break;
         }
     } while (choice != 0);
 }
 
 void SystemManager::studentViewAllCourses() const {
-    // Uses the same display as admin but kept separate for clarity
-    // Students see courses sorted by course code by default
     displayAllCoursesSortedByCourseCode();
 }
 
