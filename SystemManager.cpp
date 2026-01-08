@@ -336,6 +336,14 @@ void SystemManager::adminMenu() {
         std::cout << "Enter choice: ";
         std::cin >> choice;
 
+        if (std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Invalid input! Please enter a number.\n";
+            choice = -1;
+            continue;
+        }
+
         switch (choice) {
             case 1: displayAllCoursesSortedByCourseCode(); break;
             case 2: displayAllCoursesSortedByLecturerName(); break;
@@ -392,6 +400,14 @@ void SystemManager::studentMenu(Student &s) {
         std::cout << "0. Back to Main Menu\n";
         std::cout << "Enter choice: ";
         std::cin >> choice;
+
+        if (std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Invalid input! Please enter a number.\n";
+            choice = -1;
+            continue;
+        }
 
         switch (choice) {
             case 1: {
@@ -573,6 +589,14 @@ void SystemManager::addCourse() {
     std::cout << "Enter credit hour: ";
     int ch;
     std::cin >> ch;
+    
+    if (std::cin.fail()) {
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << "Invalid credit hour! Defaulting to 0.\n";
+        ch = 0;
+    }
+
     c.setCreditHour(ch);
     std::cin.ignore();
 
