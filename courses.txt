@@ -1,0 +1,7 @@
+SCSE1103|Discrete Math|3|Dr Tan|Monday|08:00-10:00|BK3
+SCSE1102|Data Structure and Algorithm|3|Dr Johanna|Tuesday|8:00-10:00|BK3
+SCSE1203|OOP|3|Ms Wong|Friday|10:00-12:00|BK14
+SCSE1303|Database|3|Dr Lee|Thursday|14:00-16:00|BK5
+SCSE2103|Data Structures|3|Dr Lim|Monday|10:00-12:00|BK12
+SECI1013|Programming|3|Dr Ahmad|Tuesday|14:00-16:00|DK2SCS
+SCSR1203|HCI|2|Dr Farkhana|Monday|09:00-11:00|BK6
